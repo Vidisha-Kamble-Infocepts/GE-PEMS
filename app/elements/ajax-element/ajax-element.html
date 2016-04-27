@@ -1,0 +1,128 @@
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="ajax-element">
+  <template>
+    <style>
+    .cityResponse{
+        margin-left: 50px;
+        margin-right: 50px;
+        padding: 20px;
+        background-color: red;
+        color:white;
+    }
+
+    .childList{
+    	margin-left: 40px;
+        margin-right: 40px;
+        padding: 20px;
+        background-color: blue;
+        color:white;
+    }
+
+    .paper-weather{
+    	margin-right: 200px;
+    	margin-left: 200px;
+    	padding: 20px;
+    }
+
+    #paperSlider{
+      width : 100%;
+    }
+    </style>
+    <h2 class="text-center">Ajax element</h2>
+
+    <iron-ajax
+      id="weather"
+     	auto
+     	url="http://api.openweathermap.org/data/2.5/forecast/city"
+     	params= "{{weatherParams}}"
+     	handle-as="json"
+     	on-response="handleResponse"
+     	last-response="{{ajaxResponse}}">
+    </iron-ajax>
+    <br>
+
+    <paper-material elevation="5" class="paper-weather">
+        <div>
+	    	<h1 class="text-center">Weather Forcast</h1>
+	    	<paper-input is="iron-input" id="cityInput" value="{{foo::input}}" bind-value="{{myValue}}"></paper-input><br>
+        <paper-slider max="10" value="6" step="1" id="paperSlider" snaps pin></paper-slider><br>
+	    	<span>Output : {{foo}}</span><br><br>
+	    	<paper-button on-click="updateWeather" class="btn btn-primary btn-sm">Search</paper-button>
+    	</div>
+    </paper-material><br>
+
+    <paper-material elevation="4" class="cityResponse text-center">
+      <h2>City Details</h2>
+	    Id : {{ajaxResponse.city.id}}<br>
+	    Name : {{ajaxResponse.city.name}}<br>
+	    Longitude : {{ajaxResponse.city.coord.lon}}<br>
+	    Latitude : {{ajaxResponse.city.coord.lat}}<br>
+      Count: {{ajaxResponse.cnt}}
+    </paper-material><br>
+
+	<section class="flex">
+	    <template is="dom-repeat" items="[[ajaxResponse.list]]">
+	    	<div class="col-sm-4">
+		    	<paper-material elevation="1" class="childList">
+		    		Date : <span>{{item.dt}}</span><br>
+		    		Temp : <span>{{item.main.temp}}</span><br>
+		    		Min temp : <span>{{item.main.temp_min}}</span><br>
+		    		Max temp : <span>{{item.main.temp_max}}</span><br>
+		    		Pressure : <span>{{item.main.pressure}}</span><br> 
+          </paper-material><br>
+	    	</div>
+	    </template>
+    </section>
+
+  </template>
+  <script>
+
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'ajax-element',
+
+      properties: {
+        weatherParams: {
+          type : Object,
+          value: function(){
+            return {
+              q: 'Moscow',
+              APPID: 'f9c6902f7e598f94e49dac26a7fad668',
+              cnt: '6'
+            };
+          },
+          notify: true          
+        },
+
+        foo:{
+          type: String,
+          value: 'Moscow',
+          notify: true
+        }
+
+      },       
+
+      handleResponse: function(){
+      	 console.log(' Inside response');
+      },
+
+      updateWeather: function(){
+        // var city = document.querySelector("input[is=iron-input]").value;
+        var city = document.getElementById("cityInput").value;
+        var countSlider = document.getElementById("paperSlider").value;
+      	document.getElementById("weather").generateRequest();
+        this.weatherParams = {
+          q: city,
+          APPID: 'f9c6902f7e598f94e49dac26a7fad668',
+          cnt: countSlider
+        }
+        
+      }
+
+    });
+  })();
+  </script>
+</dom-module>

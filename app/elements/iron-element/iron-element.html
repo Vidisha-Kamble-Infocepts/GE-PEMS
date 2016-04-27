@@ -1,0 +1,67 @@
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="iron-element">
+
+  <style>
+  .user-data{
+    padding: 20px;
+  }
+  </style>
+  
+  <template>
+  <paper-material elevation="5" class="user-data row">
+
+    <div class="col-sm-6">
+      <h1>Iron element</h1>
+    
+      Input : <input is="iron-input" value="{{foo::input}}" bind-value="{{bindValue}}" allowed-pattern="[a-z]" prevent-invalid-input><br><br>
+      Output : {{foo}} <br>
+      Binded Output : {{bindValue}}
+      
+      <br><br>
+      <paper-button class="btn btn-primary btn-small" on-click="updateValue">Update Value</paper-button> 
+      <paper-button class="btn btn-primary btn-small" on-click="updateBindValue">Update Bind Value</paper-button> 
+    </div>
+    <div class="col-sm-6">
+    <youtube-element></youtube-element>
+    </div>
+
+    <div class="col-sm-12"><br><br>
+    <ajax-element></ajax-element>
+    </div>
+
+
+  
+  </paper-material>
+
+  </template>
+  
+  <script>
+  (function() {
+
+    Polymer({
+      is: 'iron-element',
+
+      properties:{
+      	foo:{
+      		type:String,
+      		value:'Iron Element'
+      	}
+      },
+
+      updateValue: function(){
+      	 document.querySelector("input[is=iron-input]").value = "Not binded value";
+      },
+
+      updateBindValue: function(){
+      	document.querySelector("input[is=iron-input]").bindValue = "Binded value";
+      }
+
+      
+    })
+  })();
+  </script>
+</dom-module>
+
+
+

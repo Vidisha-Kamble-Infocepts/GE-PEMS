@@ -1,0 +1,28 @@
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<!--Twitter Bootstrap links-->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+
+<dom-module id="youtube-element">
+  <template>
+    <h1>Youtube Element</h1>
+    <google-youtube
+      video-id="TPNpLR-_16U"
+      height="200px"
+      width="400px"
+      rel="0"
+      start="5"
+      autoplay="0">
+    </google-youtube>
+    </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'youtube-element' 
+    });
+  })();
+  </script>
+</dom-module>
