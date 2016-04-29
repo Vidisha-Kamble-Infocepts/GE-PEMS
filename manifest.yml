@@ -1,0 +1,8 @@
+---
+ applications:
+ - name: polymer-master-test
+   memory: 128M
+   instances: 1
+   host: polymer-master-test
+   path: .
+   buildpack: https://github.com/cloudfoundry-incubator/staticfile-buildpack
