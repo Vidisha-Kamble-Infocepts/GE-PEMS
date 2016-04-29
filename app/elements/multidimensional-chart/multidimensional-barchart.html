@@ -1,0 +1,55 @@
+<script src="../../bower_components/highcharts/highcharts-3d.js"></script>
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="multidimensional-barchart">
+    <template>
+      <paper-material elevation="1">
+        <div id="charts" style="max-width: 600px; height: 360px;"></div>
+      </paper-material>   
+    </template>
+
+    <script>
+        Polymer({
+        is: "multidimensional-barchart",
+        ready: function () {
+
+           $(this.$.charts).highcharts({
+				chart: {
+					type: 'column',
+					options3d: {
+						enabled: true,
+						alpha: 10,
+						beta: 25,	
+						depth: 70
+					},
+					renderTo: 'charts'
+				},
+				title: {
+					text: '3D charts'
+				},
+				subtitle: {
+					text: 'Notice the difference between a 0 value and a null point'
+				},
+				plotOptions: {
+					column: {
+						depth: 25
+					}
+				},
+				xAxis: {
+					categories: Highcharts.getOptions().lang.shortMonths
+				},
+				yAxis: {
+					title: {
+						text: null
+					}
+				},
+				series: [{
+					name: 'Sales',
+					data: [2, 3, null, 4, 0, 5, 1, 4, 6, 3]
+				}]
+        });
+      }
+    });
+    </script>
+</dom-module>
