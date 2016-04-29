@@ -1,0 +1,140 @@
+
+<!-- Polymer element to fetch data from json and build a chart.
+Supports one category and two series object. -->
+<dom-module id="json-chart">
+<template>
+<!--Container for loading chart -->
+    <div id="chartContainer" style="max-width: 600px; height: 360px;"></div>
+    <!--Ajax call for fetching json -->
+    <iron-ajax  id="ajax" url="SampleData.json" on-response="handleResponse" auto></iron-ajax>
+    
+</template>
+<script>
+    Polymer({
+    is: "json-chart",
+    properties: {
+        // array objects for parsing json
+        jsonResponse: {
+          type: Array,
+          value:  function() { return []; }
+        },
+        categoryNames: {
+          type: Array,
+          value:  function() { return []; }
+        },
+        seriesOne: {
+          type: Array,
+          value:  function() { return []; }
+        },
+        seriesTwo: {
+          type: Array,
+          value:  function() { return []; }
+        }
+      },
+  
+
+//Method to process json response and generate highchart
+handleResponse: function (){
+      
+       //Json parsing done here
+        this.jsonResponse = this.$.ajax.lastResponse;
+
+        //Get all json data
+         var allDataArr = this.jsonResponse;
+         for(var i=0;i<allDataArr.length;i++){
+                        
+            var dataObj = allDataArr[i];
+
+            //Insert categoriy name in array
+            this.categoryNames.push(dataObj.name);
+            
+            /*Null is inserted in other category 
+            to display only one category at a time*/
+            if(dataObj.type == "Indoor"){
+             
+              this.seriesOne.push(dataObj.value);
+              this.seriesTwo.push(null);
+                         
+            }else{
+
+                this.seriesTwo.push(dataObj.value);
+                this.seriesOne.push(null);
+            }
+                     
+    }
+  
+    //Initialize highchart
+    $(this.$.chartContainer).highcharts({
+        chart: {
+            type: 'column'
+
+        },
+        title: {
+            text: 'Json Chart'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: [{
+                //Initialize categories
+                categories: this.categoryNames
+                }
+            ],
+        //Code for hiding y-axix
+        yAxis: {
+            min: 0,
+            labels: {
+                enabled: false
+            },
+            title: {
+                enabled: false
+            },
+            gridLineWidth: 0,
+            minorGridLineWidth: 0,
+        },
+        plotOptions: {
+            column: {
+                stacking: 'normal'
+            }
+        },
+        //Initialize series
+        series: [{
+            name: 'Indoor',
+            data: this.seriesOne,
+            color: 'red',
+            dataLabels: {
+            enabled: true,
+            color: '#FFFFFF',
+            align: 'center',
+            format: '{point.y:.1f}', 
+            y: 0, 
+            verticalAlign: 'top',
+            style: {
+            fontSize: '10px',
+            fontFamily: 'Verdana, sans-serif'
+            }
+            }
+        }, {
+            name: 'Outdoor',
+            data: this.seriesTwo,
+            color: 'orange',
+            dataLabels: {
+            enabled: true,
+            color: '#FFFFFF',
+            align: 'center',
+            format: '{point.y:.1f}', 
+            y: 0, 
+            verticalAlign: 'top',
+            style: {
+            fontSize: '10px',
+            fontFamily: 'Verdana, sans-serif'
+            }
+        }
+        }]
+
+});                
+}
+});
+
+</script>
+</dom-module>

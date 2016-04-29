@@ -1,0 +1,41 @@
+[{
+  "name": "48 - Hollywood",
+  "value": 15.7,
+  "type": "Indoor"
+}, {
+  "name": "169 - Dayton",
+  "value": 15.5,
+  "type": "Outdoor"
+}, {
+  "name": "212 - Houston",
+  "value": 15.4,
+  "type": "Outdoor"
+}, {
+  "name": "43 - Burbank",
+  "value": 15.3,
+  "type": "Indoor"
+}, {
+  "name": "34 - Harrisville",
+  "value": 15.1,
+  "type": "Outdoor"
+}, {
+  "name": "450 - Boise",
+  "value": 14.9,
+  "type": "Outdoor"
+}, {
+  "name": "69 - Tampa",
+  "value": 14.8,
+  "type": "Indoor"
+}, {
+  "name": "21 - New Orleans",
+  "value": 14.7,
+  "type": "Indoor"
+}, {
+  "name": "413 - Pueblo",
+  "value": 14.6,
+  "type": "Outdoor"
+}, {
+  "name": "334 - Branson",
+  "value": 14.6,
+  "type": "Outdoor"
+}]
