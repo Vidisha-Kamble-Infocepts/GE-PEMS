@@ -13,10 +13,17 @@
     "px-dropdown": "https://github.com/PredixDev/px-dropdown.git#^0.8.1",
     "px-data-table": "https://github.com/PredixDev/px-data-table.git#^1.6.2",
     "app-router": "^2.6.1",
-    "pushstate-anchor": "^0.3.2"
+    "pushstate-anchor": "^0.3.2",
+    "highcharts": "^4.2.4"
   },
   "devDependencies": {
     "web-component-tester": "^4.0.0"
   },
-  "ignore": []
+  "ignore": [],
+  "resolutions": {
+    "polymer": "~v1.2.3",
+    "px-dropdown": "^0.8.1",
+    "px-tooltip": "~0.4.0",
+    "px-theme": "~0.4.0"
+  }
 }
