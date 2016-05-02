@@ -41,7 +41,22 @@ Supports one category and two series object. -->
                 chartTitle: {
                     type: String,
                     notify: true,
+                },
+                chartSubtitle: {
+                    type: String,
+                    notify: true,
+                },
+                legendcolorOne: {
+                    type: String,
+                    notify: true,
+                },
+                legendcolorTwo: {
+                    type: String,
+                    notify: true,
                 }
+                // displayYaxis: {
+                //     type: Boolean,
+                // },
             },
 
 
@@ -81,26 +96,39 @@ Supports one category and two series object. -->
                 //Initialize highchart
                 $(this.$.chartContainer).highcharts({
                     chart: {
-                        type: 'column'
-
+                        type: 'column',
+                        width: 1000
                     },
                     title: {
                         text: this.chartTitle
                     },
                     subtitle: {
-                        text: ''
+                        text: this.chartSubtitle
                     },
                     xAxis: [{
+                        lineColor: 'black',
+                        lineWidth: 2,
+                        tickLength: 0,
+                        labels:{
+                            style :{
+                                "color" : "black",
+                                fontSize: "12px"
+                            },
+                             overflow: false
+                        },
                         //Initialize categories
-                        categories: this.categoryNames
+                        categories: this.categoryNames,
+
                     }],
                     //Code for hiding y-axix
                     yAxis: {
                         min: 0,
                         labels: {
+                            //enabled: this.displayYaxis
                             enabled: false
                         },
                         title: {
+                            //enabled: this.displayYaxis
                             enabled: false
                         },
                         gridLineWidth: 0,
@@ -109,13 +137,36 @@ Supports one category and two series object. -->
                     plotOptions: {
                         column: {
                             stacking: 'normal'
+                        },
+                        series: {
+                            pointWidth: 40
+
                         }
                     },
+                     legend: {
+                      align: 'right',
+                      verticalAlign: 'top',
+                      layout: 'horizontal',
+                      itemStyle: {
+                        color: 'black',
+                        fontWeight: 'normal',
+                        fontSize: '12px'
+
+                      },
+                      x: 0,
+                      y: 50
+                      },
+                       exporting: {
+                        enabled: false
+                      },
+                      credits: {
+                        enabled: false
+                      },
                     //Initialize series
                     series: [{
-                        name: 'Indoor',
-                        data: this.seriesOne,
-                        color: 'red',
+                        name: 'Outdoor',
+                        data: this.seriesTwo,
+                        color: this.legendcolorOne || '#F15854',
                         dataLabels: {
                             enabled: true,
                             color: '#FFFFFF',
@@ -125,13 +176,15 @@ Supports one category and two series object. -->
                             verticalAlign: 'top',
                             style: {
                                 fontSize: '10px',
+                                textShadow: false, 
                                 fontFamily: 'Verdana, sans-serif'
                             }
                         }
-                    }, {
-                        name: 'Outdoor',
-                        data: this.seriesTwo,
-                        color: 'orange',
+                    },
+                    {
+                        name: 'Indoor',
+                        data: this.seriesOne,
+                        color: this.legendcolorTwo || '#FAA43A',
                         dataLabels: {
                             enabled: true,
                             color: '#FFFFFF',
@@ -141,6 +194,7 @@ Supports one category and two series object. -->
                             verticalAlign: 'top',
                             style: {
                                 fontSize: '10px',
+                                textShadow: false,
                                 fontFamily: 'Verdana, sans-serif'
                             }
                         }
