@@ -1,8 +1,8 @@
 ---
 applications:
-- name: ge-polymer-sample-0502
+- name: ge-polymer-sample-ui
   memory: 128M
   instances: 1
-  host: ge-polymer-sample-0502
+  host: ge-polymer-sample-ui
   path: .
   buildpack: https://github.com/cloudfoundry-incubator/staticfile-buildpack
