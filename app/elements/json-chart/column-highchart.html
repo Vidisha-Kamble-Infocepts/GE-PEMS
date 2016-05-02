@@ -53,10 +53,11 @@ Supports one category and two series object. -->
                 legendcolorTwo: {
                     type: String,
                     notify: true,
+                },
+                yaxis: {
+                    type: Object,
+                    notify: false
                 }
-                // displayYaxis: {
-                //     type: Boolean,
-                // },
             },
 
 
@@ -124,12 +125,13 @@ Supports one category and two series object. -->
                     yAxis: {
                         min: 0,
                         labels: {
-                            //enabled: this.displayYaxis
-                            enabled: false
+                            enabled: this.yaxis || false,
+                            
                         },
                         title: {
-                            //enabled: this.displayYaxis
-                            enabled: false
+                            enabled: this.yaxis || false,
+                            text: 'kwh'
+                            
                         },
                         gridLineWidth: 0,
                         minorGridLineWidth: 0,
