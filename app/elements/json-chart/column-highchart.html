@@ -19,12 +19,6 @@ Supports one category and two series object. -->
     (function() {
         Polymer({
             is: "column-highchart",
-            behaviors: [
-                Polymer.IronResizableBehavior
-            ],
-            listeners: {
-                'iron-resize': '_onIronResize'
-            },
             properties: {
                 // array objects for parsing json
                 // Stub array objects
@@ -84,22 +78,6 @@ Supports one category and two series object. -->
 
                 
             },
-
-            _onIronResize: function() {
-                // var newh = $("#ChartBox").height();
-                // alert(" watchListChart width : "+watchListChart.chart.offsetWidth);
-
-                $( window ).resize(function() {
-                    // alert('chart resize');
-
-                    // newh = $("#ChartBox").height();
-                    // $('#ChartBox').redraw();
-                    // $('#ChartBox').reflow();
-                    // watchListChart.redraw();
-                    // watchListChart.reflow();
-                });
-            },
-
 
             //Method to process json response and generate highchart
             handleResponse: function() {
