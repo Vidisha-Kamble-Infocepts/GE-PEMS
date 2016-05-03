@@ -70,9 +70,19 @@ Supports one category and two series object. -->
                     notify: true,
                 },
                 yaxis: {
-                type: Object,
-                notify: false
+                    type: Object,
+                    notify: false
+                },
+                seriesnameOne: {
+                   type: String,
+                   notify: true 
+                },
+                seriesnameTwo: {
+                   type: String,
+                   notify: true 
                 }
+
+                
             },
 
             _onIronResize: function() {
@@ -197,7 +207,7 @@ Supports one category and two series object. -->
                       },
                     //Initialize series
                     series: [{
-                        name: 'Outdoor',
+                        name: this.seriesnameOne,
                         data: this.seriesTwo,
                         color: this.legendcolorOne || '#F15854',
                         dataLabels: {
@@ -215,7 +225,7 @@ Supports one category and two series object. -->
                         }
                     },
                     {
-                        name: 'Indoor',
+                        name: this.seriesnameTwo,
                         data: this.seriesOne,
                         color: this.legendcolorTwo || '#FAA43A',
                         dataLabels: {
