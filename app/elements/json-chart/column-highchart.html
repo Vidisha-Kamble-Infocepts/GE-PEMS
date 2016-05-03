@@ -1,15 +1,30 @@
 <!-- Polymer element to fetch data from json and build a chart.
 Supports one category and two series object. -->
 <dom-module id="column-highchart">
+    <style>
+    /* #chartContainer{
+        max-width: 100%;
+        height: 50%;
+     }*/
+    </style>
     <template>
-        <div id="chartContainer" style="max-width: 600px; height: 360px;"></div>
+        <div id="ChartBox" class="col-xs-12 col-sm-12 col-md-12">
+            <div id="chartContainer" style=""></div>
+        </div>
         <!--Ajax call for fetching json -->
         <iron-ajax id="ajax" url="SampleData.json" on-response="handleResponse" auto></iron-ajax>
     </template>
     <script>
+    var watchListChart;
     (function() {
         Polymer({
             is: "column-highchart",
+            behaviors: [
+                Polymer.IronResizableBehavior
+            ],
+            listeners: {
+                'iron-resize': '_onIronResize'
+            },
             properties: {
                 // array objects for parsing json
                 // Stub array objects
@@ -60,6 +75,21 @@ Supports one category and two series object. -->
                 }
             },
 
+            _onIronResize: function() {
+                // var newh = $("#ChartBox").height();
+                // alert(" watchListChart width : "+watchListChart.chart.offsetWidth);
+
+                $( window ).resize(function() {
+                    // alert('chart resize');
+
+                    // newh = $("#ChartBox").height();
+                    // $('#ChartBox').redraw();
+                    // $('#ChartBox').reflow();
+                    // watchListChart.redraw();
+                    // watchListChart.reflow();
+                });
+            },
+
 
             //Method to process json response and generate highchart
             handleResponse: function() {
@@ -95,10 +125,11 @@ Supports one category and two series object. -->
                 }
 
                 //Initialize highchart
-                $(this.$.chartContainer).highcharts({
+                 watchListChart = new Highcharts.Chart({
                     chart: {
                         type: 'column',
-                        width: 1000
+                        renderTo: 'chartContainer',
+                        // width: Math.floor(document.getElementById('ChartBox').offsetWidth * 9.5 / 10)
                     },
                     title: {
                         text: this.chartTitle
@@ -140,10 +171,10 @@ Supports one category and two series object. -->
                         column: {
                             stacking: 'normal'
                         },
-                        series: {
-                            pointWidth: 40
+                        // series: {
+                        //     pointWidth: 40
 
-                        }
+                        // }
                     },
                      legend: {
                       align: 'right',
