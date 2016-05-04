@@ -1,0 +1,97 @@
+[{
+  "date": 1427871600000,
+  "values": {
+     "HVAC": 5.6,
+     "Lighting": 2.4,
+     "Refrigeration": 3.4,
+     "Other": 1.2
+   }
+}, {
+  "date": 1430463600000,
+  "values": {
+     "HVAC": 5.6,
+     "Lighting": 2.4,
+     "Refrigeration": 3.4,
+     "Other": 1.2
+   }
+}, {
+  "date": 1433142000000,
+  "values": {
+     "HVAC": 5.6,
+     "Lighting": 2.4,
+     "Refrigeration": 3.4,
+     "Other": 1.2
+   }
+}, {
+  "date": 1435734000000,
+  "values": {
+     "HVAC": 5.6,
+     "Lighting": 2.4,
+     "Refrigeration": 3.4,
+     "Other": 1.2
+   }
+}, {
+  "date": 1438412400000,
+  "values": {
+     "HVAC": 5.6,
+     "Lighting": 2.4,
+     "Refrigeration": 3.4,
+     "Other": 1.2
+   }
+}, {
+  "date": 1441090800000,
+  "values": {
+     "HVAC": 5.6,
+     "Lighting": 2.4,
+     "Refrigeration": 3.4,
+     "Other": 1.2
+   }
+}, {
+  "date": 1443682800000,
+  "values": {
+     "HVAC": 5.6,
+     "Lighting": 2.4,
+     "Refrigeration": 3.4,
+     "Other": 1.2
+   }
+}, {
+  "date": 1446361200000,
+  "values": {
+     "HVAC": 5.6,
+     "Lighting": 2.4,
+     "Refrigeration": 3.4,
+     "Other": 1.2
+   }
+}, {
+  "date": 1448956800000,
+  "values": {
+     "HVAC": 5.6,
+     "Lighting": 2.4,
+     "Refrigeration": 3.4,
+     "Other": 1.2
+   }
+}, {
+  "date": 1451635200000,
+  "values": {
+     "HVAC": 5.6,
+     "Lighting": 2.4,
+     "Refrigeration": 3.4,
+     "Other": 1.2
+   }
+}, {
+  "date": 1454313600000,
+  "values": {
+     "HVAC": 5.6,
+     "Lighting": 2.4,
+     "Refrigeration": 3.4,
+     "Other": 1.2
+   }
+}, {
+  "date": 1456819200000,
+  "values": {
+     "HVAC": 5.6,
+     "Lighting": 2.4,
+     "Refrigeration": 3.4,
+     "Other": 1.2
+   }
+}]

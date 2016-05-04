@@ -1,0 +1,21 @@
+[{
+  startTime: 0,
+  endTime: 6,
+  value: 50
+}, {
+  startTime: 6,
+  endTime: 10,
+  value: 67
+}, {
+  startTime: 10,
+  endTime: 16,
+  value: 69
+}, {
+  startTime: 16,
+  endTime: 20,
+  value: 68
+}, {
+  startTime: 20,
+  endTime: 24,
+  value: 50
+}]
