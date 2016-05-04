@@ -1,3 +1,5 @@
+<link rel="import" type="text/css" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" type="text/css" href="../../../bower_components/highcharts/highcharts.js">
 <!-- Polymer element to fetch data from json and build a chart.
 Supports one category and two series object. -->
 <dom-module id="dual-category-column-highchart">
@@ -68,15 +70,15 @@ Supports one category and two series object. -->
                     notify: false
                 },
                 seriesnameOne: {
-                   type: String,
-                   notify: true 
+                    type: String,
+                    notify: true
                 },
                 seriesnameTwo: {
-                   type: String,
-                   notify: true 
+                    type: String,
+                    notify: true
                 }
 
-                
+
             },
 
             //Method to process json response and generate highchart
@@ -113,7 +115,7 @@ Supports one category and two series object. -->
                 }
 
                 //Initialize highchart
-                 watchListChart = new Highcharts.Chart({
+                watchListChart = new Highcharts.Chart({
                     chart: {
                         type: 'column',
                         renderTo: 'chartContainer',
@@ -129,12 +131,12 @@ Supports one category and two series object. -->
                         lineColor: 'black',
                         lineWidth: 2,
                         tickLength: 0,
-                        labels:{
-                            style :{
-                                "color" : "black",
+                        labels: {
+                            style: {
+                                "color": "black",
                                 fontSize: "12px"
                             },
-                             overflow: false
+                            overflow: false
                         },
                         //Initialize categories
                         categories: this.categoryNames,
@@ -145,12 +147,12 @@ Supports one category and two series object. -->
                         min: 0,
                         labels: {
                             enabled: this.yaxis || false
-                            //enabled: false
+                                //enabled: false
                         },
                         title: {
                             enabled: this.yaxis || false,
-                             text: 'kwh'
-                            //enabled: false
+                            text: 'kwh'
+                                //enabled: false
                         },
                         gridLineWidth: 0,
                         minorGridLineWidth: 0,
@@ -164,25 +166,25 @@ Supports one category and two series object. -->
 
                         // }
                     },
-                     legend: {
-                      align: 'right',
-                      verticalAlign: 'top',
-                      layout: 'horizontal',
-                      itemStyle: {
-                        color: 'black',
-                        fontWeight: 'normal',
-                        fontSize: '12px'
+                    legend: {
+                        align: 'right',
+                        verticalAlign: 'top',
+                        layout: 'horizontal',
+                        itemStyle: {
+                            color: 'black',
+                            fontWeight: 'normal',
+                            fontSize: '12px'
 
-                      },
-                      x: 0,
-                      y: 50
-                      },
-                       exporting: {
+                        },
+                        x: 0,
+                        y: 50
+                    },
+                    exporting: {
                         enabled: false
-                      },
-                      credits: {
+                    },
+                    credits: {
                         enabled: false
-                      },
+                    },
                     //Initialize series
                     series: [{
                         name: this.seriesnameOne,
@@ -197,12 +199,11 @@ Supports one category and two series object. -->
                             verticalAlign: 'top',
                             style: {
                                 fontSize: '10px',
-                                textShadow: false, 
+                                textShadow: false,
                                 fontFamily: 'Verdana, sans-serif'
                             }
                         }
-                    },
-                    {
+                    }, {
                         name: this.seriesnameTwo,
                         data: this.seriesOne,
                         color: this.legendcolorTwo || '#FAA43A',
