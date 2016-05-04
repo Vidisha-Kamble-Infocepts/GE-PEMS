@@ -67,6 +67,9 @@
                     <a data-route="column-highchart" href="{{baseUrl}}column-highchart">
                         <span>Dual Category Column Chart</span>
                     </a>
+                    <a data-route="stacked-column-highchart" href="{{baseUrl}}stacked-column-highchart">
+                        <span>Stacked Column Chart</span>
+                    </a>
                 </paper-menu>
             </paper-scroll-header-panel>
             <!-- Main Area -->
@@ -115,6 +118,11 @@
                         <section data-route="column-highchart">
                             <column-highchart chart-title="Dual Category Single Axis Chart" legendcolor-one="#F15854" legendcolor-two="#FAA43A" yaxis='false' seriesname-one="Outdoor" seriesname-two="Indoor"> Sample Chart </column-highchart>
                             
+                        </section>
+
+                        <section data-route="stacked-column-highchart">
+                            <!-- <span> Test </span> -->
+                            <stacked-column-highchart></stacked-column-highchart>
                         </section>
                     </iron-pages>
                 </div>
