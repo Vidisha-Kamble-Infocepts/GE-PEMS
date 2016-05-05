@@ -46,51 +46,46 @@
     <!--Live reload-->
     <span id="browser-sync-binding"></span>
     <template is="dom-bind" id="app">
-                
+        <paper-drawer-panel id="paperDrawerPanel">
+            <!-- Drawer Scroll Header Panel -->
+            <paper-scroll-header-panel drawer fixed>
+                <!-- Drawer Toolbar -->
+                <paper-toolbar id="drawerToolbar">
+                    <span class="menu-name">Menu</span>
+                </paper-toolbar>
+                <!-- Drawer Content -->
+                <paper-menu attr-for-selected="data-route" selected="{{route}}">
+                    <a data-route="home" href="{{baseUrl}}">
+                        <span>Predix Table</span>
+                    </a>
+                    <a data-route="polymer" href="{{baseUrl}}polymer">
+                        <span>Polymer Components</span>
+                    </a>
+                    <a data-route="charts" href="{{baseUrl}}charts">
+                        <span>Charts</span>
+                    </a>
+                    <a data-route="dual-category-column-highchart" href="{{baseUrl}}dual-category-column-highchart">
+                        <span>Dual Category Column Chart</span>
+                    </a>
+                    <a data-route="stacked-column-highchart" href="{{baseUrl}}stacked-column-highchart">
+                        <span>Stacked Column Chart</span>
+                    </a>
+                </paper-menu>
+            </paper-scroll-header-panel>
             <!-- Main Area -->
             <paper-scroll-header-panel main id="headerPanelMain" condenses keep-condensed-header>
                 <!-- Main Toolbar -->
-                <nav class="navbar navbar-fixed-top nav-color">
-                    <div class="container-fluid">
-                        <div class="navbar-header text-center">
-                            <div class="col-sm-4">
-                                <!-- Drawer Content -->
-                                <paper-dropdown-menu label="Views">
-                                    <paper-listbox class="dropdown-content" attr-for-selected="data-route" selected="{{route}}">
-                                        <paper-item>
-                                            <a data-route="home" href="{{baseUrl}}">
-                                                <span>Predix Table</span>
-                                            </a>
-                                        </paper-item>
-                                        <paper-item>
-                                            <a data-route="polymer" href="{{baseUrl}}polymer">
-                                                <span>Polymer Components</span>
-                                            </a>
-                                        </paper-item>
-                                        <paper-item>
-                                            <a data-route="charts" href="{{baseUrl}}charts">
-                                                <span>Charts</span>
-                                            </a>
-                                        </paper-item>
-                                        <paper-item>
-                                            <a data-route="dual-category-column-highchart" href="{{baseUrl}}dual-category-column-highchart">
-                                                <span>Dual Category Column Chart</span>
-                                            </a>
-                                        </paper-item>
-                                        <paper-item>
-                                            <a data-route="stacked-column-highchart" href="{{baseUrl}}stacked-column-highchart">
-                                                <span>Stacked Column Chart</span>
-                                            </a>
-                                        </paper-item>
-                                    </paper-listbox>
-                                </paper-dropdown-menu>
-                            </div>
-                            <div class="col-sm-8">
-                                <h2>Sample Application</h2>
-                            </div>
-                        </div>
+                <paper-toolbar id="mainToolbar" class="tall">
+                    <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+                    <span class="space"></span>
+                    <!-- Toolbar icons -->
+                    <paper-icon-button icon="refresh"></paper-icon-button>
+                    <paper-icon-button icon="search"></paper-icon-button>
+                    <!-- Application name -->
+                    <div class="middle middle-container">
+                        <div class="app-name">Sample Application</div>
                     </div>
-                </nav><br><br><br><br>
+                </paper-toolbar>
                 <!-- Main Content -->
                 <div class="content">
                     <iron-pages attr-for-selected="data-route" selected="{{route}}">
@@ -132,7 +127,7 @@
                     </iron-pages>
                 </div>
             </paper-scroll-header-panel>
-        
+        </paper-drawer-panel>
         <paper-toast id="toast">
             <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
         </paper-toast>
@@ -154,14 +149,6 @@
     </platinum-sw-register>
     -->
     </template>
-
-    <style>
-    nav.navbar.navbar-fixed-top.nav-color {
-        background-color: #C4F3F7;
-        color: black;
-    }
-    </style>
-    
     <!-- build:js scripts/app.js -->
     <script src="scripts/app.js"></script>
     <!-- endbuild-->
