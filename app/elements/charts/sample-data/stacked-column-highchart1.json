@@ -1,7 +1,7 @@
 [{
   "date": 1427871600000,
   "values": {
-     "HVAC": 1,
+     "HVAC": 10,
      "Lighting": 4,
      "Refrigeration": 2,
      "Other": 3

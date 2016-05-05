@@ -6,7 +6,8 @@
 	 <div id="parentContainer" class="col-xs-12 col-sm-12 col-md-12">
 	<div id="divContainer" style="width:450px;float:left;height:40%"></div>
 	<div id="divContainer2" class="chart chart-opaque" style="width:450px;float:left;height:40%"></div>
-	<iron-ajax id="ajax" url="../sample-data/SampleData.json" on-response="handleResponse" auto></iron-ajax>
+	<iron-ajax id="ajaxChartTwo" url="../sample-data/stacked-column-highchart1.json" on-response="handleData" auto></iron-ajax>
+	<iron-ajax id="ajax" url="../sample-data/stacked-column-highchart.json" on-response="handleResponse" auto></iron-ajax>
 	</div>
 </template>
 <style>
@@ -35,12 +36,219 @@ Polymer({
 			type: String,
 			value: 'foo',
 			notify: true
+		},
+		hvacArr: {
+			type: Array,
+			value: function() {
+	        return [];
+	        }
+		},
+		lightArr: {
+			type: Array,
+			value: function() {
+	        return [];
+	        }
+		},
+		refArr: {
+			type: Array,
+			value: function() {
+	        return [];
+	        }
+		},
+		otherArr: {
+			type: Array,
+			value: function() {
+	        return [];
+	        }
+			
+		},
+		qTotalArr: {
+			type: Array,
+			value: function() {
+	        return [];
+	        }
+			
+		},
+		grayArr: {
+			type: Array,
+			value: function() {
+	        return [];
+	        }
+			
+		},
+		hvacArrChart2: {
+			type: Array,
+			value: function() {
+	        return [];
+	        }
+		},
+		lightArrChart2: {
+			type: Array,
+			value: function() {
+	        return [];
+	        }
+		},
+		refArrChart2: {
+			type: Array,
+			value: function() {
+	        return [];
+	        }
+		},
+		otherArrChart2: {
+			type: Array,
+			value: function() {
+	        return [];
+	        }
+			
+		},
+		qTotalArrChart2: {
+			type: Array,
+			value: function() {
+	        return [];
+	        }
+			
+		},
+		grayArrChart2: {
+			type: Array,
+			value: function() {
+	        return [];
+	        }
+		}
+	},
+	handleData: function() {
+
+		//Json parsing done here
+		this.jsonResponse = this.$.ajaxChartTwo.lastResponse;
+
+		//Get all json data
+		var allDataArr = this.jsonResponse;
+		for (var i = 0; i < allDataArr.length; i++) {
+
+		var dataObj = allDataArr[i].values;
+		this.hvacArrChart2.push(dataObj.HVAC);
+		this.lightArrChart2.push(dataObj.Lighting);
+		this.refArrChart2.push(dataObj.Refrigeration);
+		this.otherArrChart2.push(dataObj.Other);
+		this.qTotalArrChart2.push(dataObj.HVAC+dataObj.Lighting+dataObj.Refrigeration+dataObj.Other);
 		}
 
 
-	},
-	handleResponse: function() {
-	watchListChart=new Highcharts.Chart({
+		watchListChart1=new Highcharts.Chart({
+		chart:{
+		type:'column',
+		renderTo: 'divContainer2',
+		},
+		title:{
+		text:'<br/>2016-Projected',
+		align:'left',
+		 style: {
+					color: '#000000',
+					fontWeight: 'bold'
+				}
+		},
+		xAxis:{
+		categories:['J','F','M','A','M','J','J','A','S','O','N','D'],
+		title:{
+			text:'2016 Total:',
+			align: 'left',
+			x:+20
+		}
+		},
+		yAxis:{
+		min:0,
+		title:{
+			text:null
+		},
+		labels:{
+			enabled:false
+		},
+		stackLabels:{
+			qTotals: this.qTotalArrChart2,
+
+			enabled:true,
+			formatter: function() {            
+						return this.options.qTotals[this.x];
+				}
+		},
+		gridLineWidth: 0,
+		minorGridLineWidth: 0
+		},
+		legend:{
+		title:{
+			text:'Major Systems'
+		},
+		layout:'vertical',
+		align:'right',
+		verticalAlign:'middle',
+		borderWidth:0
+		},
+		exporting: {
+		    enabled: false
+		},
+		credits: {
+		    enabled: false
+		},
+		plotOptions:{
+		column:{
+			stacking:'normal',
+			dataLabels:{
+				enabled:false
+			}
+		}
+		},
+		tooltip: {
+				headerFormat: '<b>{point.x}</b><br/>',
+				pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+		},
+		series:[
+		{
+		showInLegend: false,
+		color:'#E4E4EA',
+		data:[89.9,90.05,90.89,91.05,91.46,91.26,90.88,90.01,90.46,90.88,91.44,92.1]
+		},
+		{
+		name:'HVAC',
+		color:'#CDAB2D',
+		data:this.hvacArrChart2
+		},
+		{
+		name:'Lighting',
+		color:'#B452CD',
+		data:this.lightArrChart2
+		},
+		{
+		name:'Refrigeration',
+		color:'#FBEC5D',
+		data:this.refArrChart2
+		},
+		{
+		name:'Other',
+		color:'4D4D4D',
+		data:this.otherArrChart2
+		}]
+		});
+
+
+		},
+		handleResponse: function() {
+
+			
+		//Json parsing done here
+		this.jsonResponse = this.$.ajax.lastResponse;
+
+		//Get all json data
+		var allDataArr = this.jsonResponse;
+		for (var i = 0; i < allDataArr.length; i++) {
+
+		var dataObj = allDataArr[i].values;
+		this.hvacArr.push(dataObj.HVAC);
+		this.lightArr.push(dataObj.Lighting);
+		this.refArr.push(dataObj.Refrigeration);
+		this.otherArr.push(dataObj.Other);
+		this.qTotalArr.push(dataObj.HVAC+dataObj.Lighting+dataObj.Refrigeration+dataObj.Other);
+		}
+		
+		watchListChart=new Highcharts.Chart({
 		chart:{
 			type: 'column',
 			 renderTo: 'divContainer',
@@ -52,8 +260,11 @@ Polymer({
 			text:'USAGE ANALYSIS<br/>2015-History',
 			align:'left',
 			style:{
-				fontWeight:'Bold'
-			}
+				fontWeight:'Bold',
+				fontSize: '14px',
+			},
+			y: 1
+
 		},
 		legend:{
 			enabled:false
@@ -77,15 +288,21 @@ Polymer({
 			},
 			
 			stackLabels:{
-				qTotals: ['10.2','10.8','12','16','48.4','50','70','89','72.3','47.2','32.1','14.3'],
+				qTotals: this.qTotalArr,
 				enabled:true,
 				formatter: function() {            
-        					return this.options.qTotals[this.x];
-    				}
+							return this.options.qTotals[this.x];
+					}
 			},
 			gridLineWidth: 0,
 			minorGridLineWidth: 0
 			
+		},
+		exporting: {
+		    enabled: false
+		},
+		credits: {
+		    enabled: false
 		},
 		plotOptions:{
 			
@@ -97,9 +314,9 @@ Polymer({
 			}
 		},
 		tooltip: {
-        			headerFormat: '<b>{point.x}</b><br/>',
-        			pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
-    		},
+					headerFormat: '<b>{point.x}</b><br/>',
+					pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+			},
 		series:[
 		{
 			name:'Gray',
@@ -109,115 +326,27 @@ Polymer({
 		{
 			name:'HVAC',
 			color:'#B2912F',
-			data:[3.4,4.3,4.8,7.8,20.9,19.3,30.3,40.3,25.6,19.3,12.3,4.8]
+			data: this.hvacArr
 		},
 		{
 			name:'Lighting',
 			color:'#B276B2',
-			data:[1.9,1.7,1.2,2.2,17.0,18.2,22.2,24.2,20.4,17.4,10.2,2.5]
+			data: this.lightArr
 		},
 		{
 			name:'Refrigeration',
 			color:'#DECF3F',
-			data:[3.8,3.5,3.8,3.9,7.3,8.2,9.3,12.3,12.8,7.3,7.5,3.8]
+			data: this.refArr
 		},
 		{
 			name:'Other',
 			color:'4D4D4D',
-			data:[1.1,1.3,2.2,2.1,3.2,4.3,8.2,12.2,13.5,3.2,2.1,3.2]
+			data: this.otherArr
 		}]
-	});
-	watchListChart1=new Highcharts.Chart({
-		chart:{
-			type:'column',
-			renderTo: 'divContainer2',
-		},
-		title:{
-			text:'<br/>2016-Projected',
-			align:'left',
-			 style: {
-            			color: '#000000',
-            			fontWeight: 'bold'
-        			}
-		},
-		xAxis:{
-			categories:['J','F','M','A','M','J','J','A','S','O','N','D'],
-			title:{
-				text:'2016 Total:',
-				align: 'left',
-				x:+20
-			}
-		},
-		yAxis:{
-			min:0,
-			title:{
-				text:null
-			},
-			labels:{
-				enabled:false
-			},
-			stackLabels:{
-				qTotals: 
+		});
 
-['10.1','9.95','9.11','8.95','8.54','8.74','9.12','9.99','9.56','9.12','8.56','7.90'],
-				enabled:true,
-				formatter: function() {            
-        					return this.options.qTotals[this.x];
-    				}
-			},
-			gridLineWidth: 0,
-			minorGridLineWidth: 0
-		},
-		legend:{
-			title:{
-				text:'Major Systems'
-			},
-			layout:'vertical',
-			align:'right',
-			verticalAlign:'middle',
-			borderWidth:0
-		},
-		plotOptions:{
-			column:{
-				stacking:'normal',
-				dataLabels:{
-					enabled:false
-				}
-			}
-		},
-		tooltip: {
-        			headerFormat: '<b>{point.x}</b><br/>',
-        			pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
-    		},
-		series:[
-		{
-			showInLegend: false,
-			color:'#E4E4EA',
-			data:[89.9,90.05,90.89,91.05,91.46,91.26,90.88,90.01,90.46,90.88,91.44,92.1]
-		},
-		{
-			name:'HVAC',
-			color:'#CDAB2D',
-			data:[3.4,4.1,3.8,3.4,3.4,3.4,3.26,3.98,3.58,3.26,3.4,3.4]
-		},
-		{
-			name:'Lighting',
-			color:'#B452CD',
-			data:[1.9,1.2,1.31,1.6,1.6,1.6,1.62,1.77,1.74,1.62,1.6,1.6]
-		},
-		{
-			name:'Refrigeration',
-			color:'#FBEC5D',
-			data:[3.7,3.2,2.8,2.75,2.34,2.54,2.54,2.54,2.54,2.54,2.36,1.54]
-		},
-		{
-			name:'Other',
-			color:'4D4D4D',
-			data:[1.1,1.45,1.2,1.2,1.2,1.2,1.7,1.7,1.7,1.7,1.2,1.36]
-		}]
-	});
 
-	}
+		}
 
 });
 })();
