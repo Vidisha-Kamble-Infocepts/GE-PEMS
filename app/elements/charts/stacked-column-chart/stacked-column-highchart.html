@@ -2,17 +2,34 @@
 <dom-module id="stacked-column-highchart">
     <template>
         <h2>Stacked column chart</h2>
-        <div id="divContainer" class="col-sm-5"></div>
-        <div id="divContainer2" class="chart chart-opaque col-sm-5"></div>
+        <div class="chart-title col-sm-12">
+            &nbsp;&nbsp;&nbsp;<span class="fa fa-bolt fa-icon-style"></span>&nbsp;<h4>Usage Analysis</h4>
+        </div>
+        <hr class="col-sm-12 col-hr">
+        <div id="chart-container" class="col-sm-5"></div>
+        <div id="opaque-chart-container" class="chart col-sm-5"></div>
         <iron-ajax id="ajax" url="../sample-data/stacked-column-highchart.json" on-response="handleResponse" auto></iron-ajax>
         <iron-ajax id="ajaxChartTwo" url="../sample-data/stacked-column-highchart1.json" on-response="handleData" auto></iron-ajax>
     </template>
 </dom-module>
 <style>
-.chart-opaque {
-    height: 390px;
-    bottom: -10px;
+.chart {
+    height: 400px;
+   /* bottom: -15px;*/
     left: -35px;
+}
+.chart-title{
+	display:inline-flex;
+}
+
+.fa-icon-style{
+	margin-top: 12px;
+}
+
+hr.col-hr{
+	margin-bottom: 0;
+	margin-top: 0;
+	border-top: 1px solid #C0C0C0;
 }
 </style>
 <script type="text/javascript">
@@ -131,19 +148,18 @@
             new Highcharts.Chart({
                 chart: {
                     type: 'column',
-                    renderTo: 'divContainer',
+                    renderTo: 'chart-container',
                     style: {
                         width: '100%'
                     }
                 },
                 title: {
-                    text: 'USAGE ANALYSIS<br/>2015-History',
-                    align: 'left',
-                    style: {
+                    text: '2015-History',
+                	align: 'left',
+                	style: {
                         fontWeight: 'Bold',
-                        fontSize: '14px',
-                    },
-                    y: 1
+                        fontSize: 12
+                    }
 
                 },
                 legend: {
@@ -191,7 +207,11 @@
                         dataLabels: {
                             enabled: false
                         }
-                    }
+                    },
+					series: {
+						pointWidth: 30,
+						groupPadding: 0
+					}
                 },
                 tooltip: {
                     headerFormat: '<b>{point.x}</b><br/>',
@@ -244,20 +264,16 @@
             new Highcharts.Chart({
                 chart: {
                     type: 'column',
-                    renderTo: 'divContainer2',
+                    renderTo: 'opaque-chart-container',
                 },
                 title: {
-                    text: '<br/>2016-Projected',
+                	text: '2016-Projected',
                     align: 'left',
-                    style: {
-                        color: '#000000',
-                        fontWeight: 'bold'
+                	style: {
+                        fontWeight: 'Bold',
+                        fontSize: 12
                     }
-                },
-                subtitle: {
-                	x:15,
-                	y:5
-                },
+                },         
                 xAxis: {
                     categories: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
                     title: {
@@ -307,7 +323,11 @@
                         dataLabels: {
                             enabled: false
                         }
-                    }
+                    },
+					series: {
+						pointWidth: 30,
+						groupPadding: 0
+					}
                 },
                 tooltip: {
                     headerFormat: '<b>{point.x}</b><br/>',
@@ -336,7 +356,8 @@
                 }]
             });
 
-            $('.chart-opaque .highcharts-series-group, .chart-opaque .highcharts-axis, .chart-opaque .highcharts-stack-labels').css('opacity', 0.4);
+            $('.chart .highcharts-series-group, .chart .highcharts-axis, .chart .highcharts-stack-labels').css('opacity', 0.4);
+            // $('.highcharts-subtitle').css('paddingBottom', -90);
 
 
         }

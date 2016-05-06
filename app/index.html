@@ -40,6 +40,9 @@
     <link rel="import" href="elements/elements.html">
     <!-- For shared styles, shared-styles.html import in elements.html -->
     <style is="custom-style" include="shared-styles"></style>
+
+    <!-- Font awesome icons cdn-->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 
 <body unresolved>
@@ -50,47 +53,40 @@
             <!-- Main Area -->
             <paper-scroll-header-panel main id="headerPanelMain" condenses keep-condensed-header>
                 <!-- Main Toolbar -->
-                <nav class="navbar navbar-fixed-top nav-color">
+                <nav class="navbar nav-color">
                     <div class="container-fluid">
-                        <div class="navbar-header text-center">
-                            <div class="col-sm-4">
-                                <!-- Drawer Content -->
-                                <paper-dropdown-menu label="Views">
-                                    <paper-listbox class="dropdown-content" attr-for-selected="data-route" selected="{{route}}">
-                                        <paper-item>
-                                            <a data-route="home" href="{{baseUrl}}">
-                                                <span>Predix Table</span>
-                                            </a>
-                                        </paper-item>
-                                        <paper-item>
-                                            <a data-route="polymer" href="{{baseUrl}}polymer">
-                                                <span>Polymer Components</span>
-                                            </a>
-                                        </paper-item>
-                                        <paper-item>
-                                            <a data-route="charts" href="{{baseUrl}}charts">
-                                                <span>Charts</span>
-                                            </a>
-                                        </paper-item>
-                                        <paper-item>
-                                            <a data-route="dual-category-column-highchart" href="{{baseUrl}}dual-category-column-highchart">
-                                                <span>Dual Category Column Chart</span>
-                                            </a>
-                                        </paper-item>
-                                        <paper-item>
-                                            <a data-route="stacked-column-highchart" href="{{baseUrl}}stacked-column-highchart">
-                                                <span>Stacked Column Chart</span>
-                                            </a>
-                                        </paper-item>
-                                    </paper-listbox>
-                                </paper-dropdown-menu>
-                            </div>
-                            <div class="col-sm-8">
-                                <h2>Sample Application</h2>
-                            </div>
+                        <div class="col-sm-4">
+                            <!-- Drawer Content -->
+                            <paper-dropdown-menu label="Views">
+                                <paper-listbox class="dropdown-content" attr-for-selected="data-route" selected="{{route}}">
+                                    <a data-route="home" href="{{baseUrl}}">
+                                        <paper-item>Predix Table</paper-item>
+                                    </a>
+                                                                    
+                                    <a data-route="polymer" href="{{baseUrl}}polymer">
+                                        <paper-item>Polymer Components</paper-item>
+                                    </a>
+                                
+                                    <a data-route="charts" href="{{baseUrl}}charts">
+                                        <paper-item>Dummy Charts</paper-item>
+                                    </a>
+                                
+                                    <a data-route="dual-category-column-highchart" href="{{baseUrl}}dual-category-column-highchart">
+                                        <paper-item>Dual Axis Column Chart</paper-item>
+                                    </a>
+                               
+                                    <a data-route="stacked-column-highchart" href="{{baseUrl}}stacked-column-highchart">
+                                        <paper-item>Stacked Column Chart</paper-item>
+                                    </a>
+                                </paper-listbox>
+                            </paper-dropdown-menu>
                         </div>
+                        <div class="col-sm-8">
+                            <h1>GE Sample Application</h1>
+                        </div>
+                        
                     </div>
-                </nav><br><br><br><br>
+                </nav>
                 <!-- Main Content -->
                 <div class="content">
                     <iron-pages attr-for-selected="data-route" selected="{{route}}">
@@ -156,7 +152,7 @@
     </template>
 
     <style>
-    nav.navbar.navbar-fixed-top.nav-color {
+    nav.navbar.nav-color {
         background-color: #C4F3F7;
         color: black;
     }
