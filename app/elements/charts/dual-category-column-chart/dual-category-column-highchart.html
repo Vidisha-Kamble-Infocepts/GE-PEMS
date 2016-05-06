@@ -10,9 +10,9 @@ Supports one category and two series object. -->
      }*/
     </style>
     <template>
-        <div id="ChartBox" class="col-xs-12 col-sm-12 col-md-12">
-            <div id="chartContainer" style=""></div>
-        </div>
+        <!-- <div id="ChartBox"> -->
+        <div id="chartContainer" class="col-sm-11"></div>
+        <!-- </div> -->
         <!--Ajax call for fetching json -->
         <iron-ajax id="ajax" url="../sample-data/SampleData.json" on-response="handleResponse" auto></iron-ajax>
     </template>
@@ -84,6 +84,12 @@ Supports one category and two series object. -->
             //Method to process json response and generate highchart
             handleResponse: function() {
 
+                $(window).resize(function() {
+                    //height = chart.height
+                    //width = $("#chartRow").width() / 2
+                   // $("#chartContainer").resize();
+                });
+
                 //Json parsing done here
                 this.jsonResponse = this.$.ajax.lastResponse;
 
@@ -119,7 +125,35 @@ Supports one category and two series object. -->
                     chart: {
                         type: 'column',
                         renderTo: 'chartContainer',
-                        // width: Math.floor(document.getElementById('ChartBox').offsetWidth * 9.5 / 10)
+                        events: {
+                            load: function() {
+
+
+                                var label = this.renderer.label('Chart loaded', 100, 120)
+                                    .attr({
+                                        fill: Highcharts.getOptions().colors[0],
+                                        padding: 0,
+                                        r: 5,
+                                        zIndex: 8
+                                    })
+                                    .css({
+                                        color: '#FFFFFF'
+                                    })
+                                    .add();
+
+                                setTimeout(function() {
+                                    label.fadeOut();
+                                }, 5000);
+
+                                console.log('width before chart rendered: ', $("#chartContainer").highcharts().chartWidth);
+                                $(window).resize();
+                                $("#chartContainer").resize();
+                                $("#chartContainer").highcharts().reflow();
+
+                                console.log('width after chart rendered: ', $("#chartContainer").highcharts().chartWidth);
+
+                            }
+                        }
                     },
                     title: {
                         text: this.chartTitle
