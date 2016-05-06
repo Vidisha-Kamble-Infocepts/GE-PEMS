@@ -223,6 +223,7 @@ hr.col-hr{
 
             //Get all json data
             var allDataArr = this.jsonResponse;
+            var totalSeriesData=0;
             for (var i = 0; i < allDataArr.length; i++) {
 
                 var dataObj = allDataArr[i].values;
@@ -230,11 +231,14 @@ hr.col-hr{
                 this.lightArr.push(dataObj.Lighting);
                 this.refArr.push(dataObj.Refrigeration);
                 this.otherArr.push(dataObj.Other);
-                var totalSeriesData = dataObj.HVAC + dataObj.Lighting + dataObj.Refrigeration + dataObj.Other;
+                totalSeriesData = dataObj.HVAC + dataObj.Lighting + dataObj.Refrigeration + dataObj.Other;
                 this.qTotalArr.push(dataObj.HVAC + dataObj.Lighting + dataObj.Refrigeration + dataObj.Other);
                 this.grayArrChart2.push(100-totalSeriesData);
             }
-
+            var sum=0;
+            for(var i=0;i<this.qTotalArr.length;i++){
+            	sum=sum+this.qTotalArr[i];
+            }
             new Highcharts.Chart({
                 chart: {
                     type: 'column',
@@ -258,7 +262,7 @@ hr.col-hr{
                 xAxis: {
                     categories: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
                     title: {
-                        text: '2015 Total:',
+                        text: '2015 Total:' + sum + 'kWh',
                         align: 'left',
                         x: +20
                     }
@@ -351,7 +355,10 @@ hr.col-hr{
                 this.qTotalArrChart2.push(totalSeriesData);
                 this.grayArr.push(100 - totalSeriesData);
             }
-
+            var sum=0;
+            for(var i=0;i<this.qTotalArrChart2.length;i++){
+            	sum=sum+this.qTotalArrChart2[i];
+            }
 
             new Highcharts.Chart({
                 chart: {
@@ -370,7 +377,7 @@ hr.col-hr{
                 xAxis: {
                     categories: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
                     title: {
-                        text: '2016 Total:',
+                        text: '2016 Total:'+ sum + 'kWh',
                         align: 'left',
                         x: +20
                     }
