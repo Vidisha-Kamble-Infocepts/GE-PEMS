@@ -8,17 +8,52 @@
         <hr class="col-sm-12 col-hr">
         <div id="chart-container" class="col-sm-5"></div>
         <div id="opaque-chart-container" class="chart col-sm-5"></div>
+        <div class="col-sm-2 pull-left">
+            <br><br><br><br>
+            <p class="legends-title">kWh</p><br><br>
+        	<b>Major System</b><br>
+        	<div class="chart-legends">
+	        	<div class="hvac-color legend-box"></div>&nbsp;
+	        	<span>HVAC</span>
+        	</div><br>
+        	<div class="chart-legends">
+	        	<div class="lightining-color legend-box"></div>&nbsp;
+	        	<span>Lightining</span>
+        	</div><br>
+        	<div class="chart-legends">
+	        	<div class="refrigeration-color legend-box"></div>&nbsp;
+	        	<span>Refrigeration</span>
+        	</div><br>
+        	<div class="chart-legends">
+	        	<div class="other-color legend-box"></div>&nbsp;
+	        	<span>Other</span>
+        	</div>
+        </div>
         <iron-ajax id="ajax" url="../sample-data/stacked-column-highchart.json" on-response="handleResponse" auto></iron-ajax>
         <iron-ajax id="ajaxChartTwo" url="../sample-data/stacked-column-highchart1.json" on-response="handleData" auto></iron-ajax>
     </template>
 </dom-module>
 <style>
+/*div#chart-container {
+    height: 200px;
+}*/
 .chart {
     height: 400px;
    /* bottom: -15px;*/
-    left: -35px;
+}
+
+@media screen and (min-width: 768px) {
+	.chart {
+       left: -35px;
+    }
 }
 .chart-title{
+	display:inline-flex;
+	z-index: 50;
+    bottom: -48px;
+}
+
+.chart-legends{
 	display:inline-flex;
 }
 
@@ -30,6 +65,33 @@ hr.col-hr{
 	margin-bottom: 0;
 	margin-top: 0;
 	border-top: 1px solid #C0C0C0;
+	z-index: 50;
+    bottom: -48px;
+}
+
+.legends-title{
+	opacity:0.4;
+}
+
+.legend-box{
+	width:15px;
+	height:15px;
+}
+
+.hvac-color{
+	background-color: #B2912F;
+}
+
+.lightining-color{
+	background-color: #B276B2;
+}
+
+.refrigeration-color{
+	background-color: #DECF3F;
+}
+
+.other-color{
+	background-color: #4D4D4D;
 }
 </style>
 <script type="text/javascript">
@@ -186,9 +248,9 @@ hr.col-hr{
                 	align: 'left',
                 	style: {
                         fontWeight: 'Bold',
-                        fontSize: 12
-                    }
-
+                        fontSize: 12,
+                    },
+                    y: 60,
                 },
                 legend: {
                     enabled: false
@@ -268,6 +330,8 @@ hr.col-hr{
                 }]
             });
 
+            // $('.highcharts-title').append('<hr>');
+
         },
         handleData: function() {
 
@@ -300,7 +364,8 @@ hr.col-hr{
                 	style: {
                         fontWeight: 'Bold',
                         fontSize: 12
-                    }
+                    },
+                    y: 60
                 },         
                 xAxis: {
                     categories: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
