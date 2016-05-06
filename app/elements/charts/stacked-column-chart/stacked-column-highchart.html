@@ -185,6 +185,34 @@ hr.col-hr{
                 value: function() {
                     return [];
                 }
+            },
+            columncolorOne:{
+            	type:String,
+            	notify:true,
+            },
+            columncolorTwo:{
+            	type:String,
+            	notify:true,
+            },
+            columncolorThree:{
+            	type:String,
+            	notify:true,
+            },
+            columncolorFour:{
+            	type:String,
+            	notify:true,
+            },
+            columncolorFive:{
+            	type:String,
+            	notify:true,
+            },
+            chartTitle:{
+            	type:String,
+            	notify:true,
+            },
+            chartTitle1:{
+            	type:String,
+            	notify:true,
             }
         },
         handleResponse: function() {
@@ -215,23 +243,14 @@ hr.col-hr{
                         width: '100%'
                     }
                 },
-                // title: {
-                //     text: '<span class="fa fa-bolt fa-icon-style"></span>  Usage Analysis',
-                // 	align: 'left',
-                // 	style: {
-                //         fontWeight: 'Bold'                        
-                //     },
-                //     useHTML: true
-
-                // },
-                title:{
-                	text: '2015-History',
+                title: {
+                    text: this.chartTitle,
                 	align: 'left',
                 	style: {
                         fontWeight: 'Bold',
-                        fontSize: 12
+                        fontSize: 12,
                     },
-                    y: 60
+                    y: 60,
                 },
                 legend: {
                     enabled: false
@@ -290,23 +309,23 @@ hr.col-hr{
                 },
                 series: [{
                     name: 'Gray',
-                    color: '#E4E4EA',
+                    color: this.columncolorOne,
                     data: this.grayArrChart2
                 }, {
                     name: 'HVAC',
-                    color: '#B2912F',
+                    color: this.columncolorTwo,
                     data: this.hvacArr
                 }, {
                     name: 'Lighting',
-                    color: '#B276B2',
+                    color: this.columncolorThree,
                     data: this.lightArr
                 }, {
                     name: 'Refrigeration',
-                    color: '#DECF3F',
+                    color: this.columncolorFour,
                     data: this.refArr
                 }, {
                     name: 'Other',
-                    color: '4D4D4D',
+                    color: this.columncolorFive,
                     data: this.otherArr
                 }]
             });
@@ -340,7 +359,7 @@ hr.col-hr{
                     renderTo: 'opaque-chart-container',
                 },
                 title: {
-                	text: '2016-Projected',
+                	text: this.chartTitle1,
                     align: 'left',
                 	style: {
                         fontWeight: 'Bold',
@@ -409,23 +428,23 @@ hr.col-hr{
                 },
                 series: [{
                     showInLegend: false,
-                    color: '#E4E4EA',
+                    color: this.columncolorOne,
                     data: this.grayArr
                 }, {
                     name: 'HVAC',
-                    color: '#CDAB2D',
+                    color: this.columncolorTwo,
                     data: this.hvacArrChart2
                 }, {
                     name: 'Lighting',
-                    color: '#B452CD',
+                    color: this.columncolorThree,
                     data: this.lightArrChart2
                 }, {
                     name: 'Refrigeration',
-                    color: '#FBEC5D',
+                    color: this.columncolorFour,
                     data: this.refArrChart2
                 }, {
                     name: 'Other',
-                    color: '4D4D4D',
+                    color: this.columncolorFive,
                     data: this.otherArrChart2
                 }]
             });
